@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 3;
+    public float speed = 30;
     CharacterController controller;
+    public GameObject Music;
+    GameObject BGM = null;
 
     void Start()
     {
@@ -28,7 +30,7 @@ public class Player : MonoBehaviour
         }
 
         // 移動 (x,z)
-        Vector3 move = dir * speed;
+        Vector3 move = dir * speed * Time.deltaTime;
 
         // 地心引力 (y)
         if (!controller.isGrounded)
@@ -37,5 +39,14 @@ public class Player : MonoBehaviour
         }
 
         controller.Move(move * speed * Time.deltaTime);
+
+        if (transform.position.y <= -10)
+            transform.position = new Vector3(0, 0.6f, 0);
+
+        BGM = GameObject.FindGameObjectWithTag("Music");
+        if (BGM == null)
+        {
+            BGM = Instantiate(Music);
+        }
     }
 }
