@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 30;
+    public float speed = 35;
     CharacterController controller;
     public GameObject Music;
     GameObject BGM = null;
